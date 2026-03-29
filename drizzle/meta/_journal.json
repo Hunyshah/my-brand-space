@@ -8,6 +8,13 @@
       "when": 1774785301067,
       "tag": "0000_sticky_spirit",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1774790343197,
+      "tag": "0001_mysterious_quicksilver",
+      "breakpoints": true
     }
   ]
 }
