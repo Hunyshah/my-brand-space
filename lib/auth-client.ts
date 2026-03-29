@@ -1,0 +1,10 @@
+"use client";
+
+import { createAuthClient } from "better-auth/react";
+
+export const authClient = createAuthClient({
+  baseURL: process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000",
+});
+
+// Yahan se hooks nikalte hain
+export const { useSession, signIn, signOut, signUp } = authClient;

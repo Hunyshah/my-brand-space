@@ -1,6 +1,17 @@
+export type UserRole = "admin" | "user";
+
 export interface User {
   id: string;
+
   name: string;
   email: string;
-  role: "admin" | "editor" | "visitor";
+  password: string;
+
+  role: UserRole;
+
+  avatar?: string | null;
+  isVerified: boolean;
+
+  createdAt: Date;
+  updatedAt: Date;
 }

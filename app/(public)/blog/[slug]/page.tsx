@@ -1,14 +1,27 @@
-interface BlogPageProps {
-  params: { slug: string };
-}
+import { getPostBySlug } from "@/actions/post.actions";
 
-export default function BlogPostPage({ params }: BlogPageProps) {
+export default async function BlogDetail({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const post = await getPostBySlug((await params).slug);
+
+  if (!post) return <div>Post not found</div>;
+
   return (
-    <article>
-      <h1 className="text-3xl font-bold">Blog post: {params.slug}</h1>
-      <p className="mt-4 text-slate-600">
-        This is the public blog content for the selected slug.
-      </p>
-    </article>
+    <div className="container py-10">
+      <h1 className="text-3xl font-bold">{post.data?.title}</h1>
+
+      {post.data?.coverImage && (
+        <img
+          src={post.data.coverImage}
+          alt={post.data.title}
+          className="my-6"
+        />
+      )}
+
+      <p>{post.data?.content}</p>
+    </div>
   );
 }
