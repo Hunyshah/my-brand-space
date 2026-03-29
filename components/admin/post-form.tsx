@@ -1,16 +1,54 @@
-export function PostForm() {
+"use client";
+
+import { useState } from "react";
+import { createPost } from "@/actions/post.actions";
+
+export default function PostForm() {
+  const [title, setTitle] = useState("");
+  const [content, setContent] = useState("");
+  const [image, setImage] = useState("");
+
+  const handleSubmit = async (e: any) => {
+    e.preventDefault();
+
+    await createPost({
+      title,
+      content,
+      coverImage: image,
+    });
+
+    alert("Post Created ✅");
+
+    setTitle("");
+    setContent("");
+    setImage("");
+  };
+
   return (
-    <form className="space-y-4 rounded-2xl border bg-white p-6 shadow-sm">
-      <div>
-        <label className="block text-sm font-medium">Title</label>
-        <input className="mt-2 w-full rounded-lg border p-3" />
-      </div>
-      <div>
-        <label className="block text-sm font-medium">Content</label>
-        <textarea className="mt-2 w-full rounded-lg border p-3" rows={6} />
-      </div>
-      <button className="rounded-lg bg-slate-900 px-4 py-2 text-white">
-        Save post
+    <form onSubmit={handleSubmit} className="space-y-4">
+      <input
+        placeholder="Title"
+        value={title}
+        onChange={(e) => setTitle(e.target.value)}
+        className="border p-2 w-full"
+      />
+
+      <textarea
+        placeholder="Content"
+        value={content}
+        onChange={(e) => setContent(e.target.value)}
+        className="border p-2 w-full"
+      />
+
+      <input
+        placeholder="Image URL (Cloudinary)"
+        value={image}
+        onChange={(e) => setImage(e.target.value)}
+        className="border p-2 w-full"
+      />
+
+      <button className="bg-black text-white px-4 py-2 rounded">
+        Create Post
       </button>
     </form>
   );

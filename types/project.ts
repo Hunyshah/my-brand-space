@@ -1,7 +1,15 @@
 export interface Project {
   id: string;
+
   title: string;
-  description: string;
-  image?: string;
-  url?: string;
+  description?: string | null;
+
+  image?: string | null;
+
+  liveUrl?: string | null;
+  githubUrl?: string | null;
+
+  techStack?: string | null;
+
+  createdAt: Date;
 }
